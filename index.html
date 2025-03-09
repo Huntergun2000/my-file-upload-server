@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datei-Upload</title>
+    <style>
+        body {
+            background-color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #downloadLink {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Datei hochladen</h2>
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Hochladen</button>
+    <a id="downloadLink" href="#" download>Download Datei</a>
+
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const downloadLink = document.getElementById('downloadLink');
+            
+            if (fileInput.files.length === 0) {
+                alert('Bitte eine Datei auswählen!');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const url = URL.createObjectURL(file);
+            
+            downloadLink.href = url;
+            downloadLink.style.display = 'block';
+            downloadLink.textContent = 'Download ' + file.name;
+        }
+    </script>
+</body>
+</html>
